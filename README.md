@@ -55,7 +55,7 @@ Set cookie validation key in `config/web.php` file to some random secret string:
 You can then access the application through the following URL:
 
 ~~~
-http://localhost/basic/web/
+http://localhost/quehacentusdiputados/web/
 ~~~
 
 
@@ -75,7 +75,7 @@ Now you should be able to access the application through the following URL, assu
 directly under the Web root.
 
 ~~~
-http://localhost/basic/web/
+http://localhost/quehacentusdiputados/web/
 ~~~
 
 
@@ -96,6 +96,20 @@ return [
 ];
 ```
 
+
+
 **NOTE:** Yii won't create the database for you, this has to be done manually before you can access it.
 
 Also check and edit the other files in the `config/` directory to customize your application.
+
+
+MODO DESARROLLO A MODO PRODUCCIÓN
+---------------
+
+en archivo 'web/index.php'
+
+defined('YII_DEBUG') or define('YII_DEBUG', false);
+defined('YII_ENV') or define('YII_ENV', 'stable');
+
+composer update --no-dev
+composer install --no-dev

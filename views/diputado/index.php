@@ -14,16 +14,26 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="diputado-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-
+    <!--< ?php // echo $this->render('_search', ['model' => $searchModel]); ?>-->
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
-            'nombre',
-            'apellido',
+            [
+                'attribute' => 'nombre',
+                'format'=>'raw',
+                'value'=>function ($dataProvider) {
+                    return Html::a($dataProvider->nombre, ["view?id=".$dataProvider->id]);
+                },
+            ],
+            [
+                'attribute' => 'apellido',
+                'format'=>'raw',
+                'value'=>function ($dataProvider) {
+                    return Html::a($dataProvider->apellido, ["view?id=".$dataProvider->id]);
+                },
+            ],
             [
                 'attribute' => 'partido_id',
                 'label' => 'Partido',

@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\VotacionCiudadana;
 use Yii;
 use app\models\Iniciativa;
 use yii\data\ActiveDataProvider;
@@ -48,9 +49,22 @@ class IniciativaController extends Controller
      */
     public function actionView($id)
     {
+        $votacion_ciudadana = new VotacionCiudadana();
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('view', [
+                'model' => $model,
+                'vot_ciud' => $votacion_ciudadana,
+            ]);
+        }
+        /*
         return $this->render('view', [
             'model' => $this->findModel($id),
-        ]);
+            'vot_ciud' => $votacion_ciudadana,
+        ]);*/
     }
 
     /**

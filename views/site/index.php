@@ -38,12 +38,12 @@ $this->title = 'Yo en la cámara de diputados';
                         ],
                         'descripcion'
                     ],
-                    'summary' =>'',
+                    'summary' =>'Próximas iniciativas a discutir en la cámara de diputados',
 
                 ]); ?>
             </div>
             <div class="col-lg-4">
-                <h3>Participa en las próximas decisiones de la cámara de diputados!</h3>
+                <h4><b>Participa en las próximas decisiones de la cámara de diputados!</b></h4>
 
                 <p>Da click en alguna de las futuras iniciativas de la cámara que se muestran aquí a la izquierda y vota!</p>
                 <p>Explora a detalle la lista de iniciativas de los diputados o navega por los perfiles de los diputados

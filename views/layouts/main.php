@@ -41,9 +41,9 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Inicio', 'url' => ['/site/index']],
             ['label' => 'Acerca', 'url' => ['/site/about']],
-            ['label' => 'Contacto', 'url' => ['/site/contact']],
             ['label' => 'Iniciativas', 'url' => ['/iniciativa/index']],
             ['label' => 'Diputados', 'url' => ['/diputado/index']],
+            ['label' => 'Contacto', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ?
                 ['label' => 'Iniciar sesión', 'url' => ['/site/login']] :
                 [

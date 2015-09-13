@@ -17,6 +17,10 @@ use yii\jui\DatePicker;
 
     <?= $form->field($model, 'asunto')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'fecha')->widget(DatePicker::className(),[
+        'dateFormat' => 'yyyy-MM-dd',
+    ]) ?>
+
     <?= $form->field($model, 'descripcion')->(['rows' => 6]) ?>
 
     <div class="form-group">

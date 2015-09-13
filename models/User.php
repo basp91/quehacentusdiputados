@@ -38,9 +38,11 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             [['username', 'password','password_hash', 'auth_key', 'access_token', 'distrito_id', 'ife'], 'required'],
-            [['distrito_id', 'ife'], 'integer'],
+            [['distrito_id'], 'integer'],
             [['username'], 'string', 'max' => 45],
-            [['password_hash', 'auth_key', 'access_token'], 'string', 'max' => 128]
+            [['password_hash', 'auth_key', 'access_token'], 'string', 'max' => 128],
+            [['ife'], 'string', 'max' => 18]
+
         ];
     }
 
@@ -57,7 +59,7 @@ class User extends \yii\db\ActiveRecord
             'auth_key' => 'Auth Key',
             'access_token' => 'Access Token',
             'distrito_id' => 'Distrito ID',
-            'ife' => 'INE',
+            'ife' => 'Clave de Elector',
             'password' => 'Contraseña'
         ];
     }

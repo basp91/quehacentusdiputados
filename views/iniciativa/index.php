@@ -13,22 +13,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => [
+            'fecha',
+            'asunto',
+            'descripcion:ntext',
+        ],
+    ]); ?>
+
     <p>
         <?= Html::a('Create Iniciativa', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'asunto',
-            'fecha',
-            'descripcion:ntext',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
 
 </div>

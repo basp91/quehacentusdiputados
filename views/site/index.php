@@ -1,5 +1,8 @@
 <?php
 
+use yii\grid\GridView;
+use yii\helpers\Html;
+
 /* @var $this yii\web\View */
 
 $this->title = 'Yo en la cámara de diputados';
@@ -17,35 +20,42 @@ $this->title = 'Yo en la cámara de diputados';
     <div class="body-content">
 
         <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+            <div class="col-lg-8">
+                <?= GridView::widget([
+                    'dataProvider' => $dataProvider,
+                    'columns' => [
+                        [
+                            'attribute' => 'fecha',
+                            'contentOptions'=>[
+                                'style'=>'min-width: 80px;'
+                            ]
+                        ],
+                        [
+                            'attribute' => 'asunto',
+                            'contentOptions'=>[
+                                'style'=>'min-width: 160px;'
+                            ]
+                        ],
+                        'descripcion'
+                    ],
+                    'summary' =>'',
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
+                ]); ?>
             </div>
             <div class="col-lg-4">
-                <h2>Heading</h2>
+                <h3>Participa en las próximas decisiones de la cámara de diputados!</h3>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+                <p>Da click en alguna de las futuras iniciativas de la cámara que se muestran aquí a la izquierda y vota!</p>
+                <p>Explora a detalle la lista de iniciativas de los diputados o navega por los perfiles de los diputados
+                    con los botones de aquí abajo</p>
+                <div class="row">
+                    <div class="col-lg-5">
+                        <p><?= Html::a('Diputados', ['/diputado/index'], ['class'=>'btn btn-default span4']) ?></p>
+                    </div>
+                    <div class="col-lg-5">
+                        <p><?= Html::a('Iniciativas', ['/iniciativa/index'], ['class'=>'btn btn-default span4']) ?></p>
+                    </div>
+                </div>
             </div>
         </div>
 

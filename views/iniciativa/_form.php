@@ -1,7 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
+use yii\jui\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Iniciativa */
@@ -10,11 +11,15 @@ use yii\widgets\ActiveForm;
 
 <div class="iniciativa-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'layout' => 'horizontal'
+    ]); ?>
 
     <?= $form->field($model, 'asunto')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'fecha')->textInput() ?>
+    <?= $form->field($model, 'fecha')->widget(DatePicker::className(),[
+        'dateFormat' => 'yyyy-MM-dd',
+    ]) ?>
 
     <?= $form->field($model, 'descripcion')->textarea(['rows' => 6]) ?>
 

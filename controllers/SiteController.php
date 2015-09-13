@@ -2,12 +2,15 @@
 
 namespace app\controllers;
 
+use app\models\Iniciativa;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use yii\data\ActiveDataProvider;
+
 
 class SiteController extends Controller
 {
@@ -49,7 +52,17 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+
+        $date = date('Y-m-d');
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => Iniciativa::find()->where(['>','fecha',$date])->limit(10)->orderBy('fecha ASC'),
+        ]);
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+            'date' => $date,
+        ]);
     }
 
     public function actionLogin()

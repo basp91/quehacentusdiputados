@@ -13,10 +13,7 @@ use app\models\Distrito;
 <div class="user-form">
 
     <?php $form = ActiveForm::begin([
-        'layout' => 'horizontal',
-        'options' => [
-            'enctype' => 'multipart/form-data'
-        ]
+        'layout' => 'horizontal'
     ]); ?>
 
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>

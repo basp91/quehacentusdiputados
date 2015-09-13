@@ -32,6 +32,10 @@ $this->title = 'Yo en la cámara de diputados';
                         ],
                         [
                             'attribute' => 'asunto',
+                            'value' => function ($dataProvider) {
+                                return Html::a($dataProvider->asunto, ["iniciativa/view?id=".$dataProvider->id]);
+                            },
+                            'format' => 'raw',
                             'contentOptions'=>[
                                 'style'=>'min-width: 160px;'
                             ]

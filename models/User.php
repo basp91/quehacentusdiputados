@@ -18,7 +18,7 @@ use Yii;
  * @property VotacionCiudadana[] $votacionCiudadanas
  * @property VotacionDiputado[] $votacionDiputados
  */
-class User extends \yii\db\ActiveRecord
+class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
 
     public $password;

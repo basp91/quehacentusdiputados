@@ -15,27 +15,27 @@ use yii\jui\DatePicker;
         'layout' => 'horizontal'
     ]); ?>
 
-    <?= $form->field($modelo_votacion, 'voto')->radioList([0 => 'Acepto', 1 => 'Rechazo'])->hiddenInput() ?>
+    <?= $form->field($modelo_votacion, 'voto')->radioList([0 => 'Acepto', 1 => 'Rechazo'])->hiddenInput()->label('') ?>
 
     <div class="row">
-        <div class="col-lg-3"></div>
-        <div class="col-lg-3">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-2">
             <div class="form-group">
                 <?= Html::submitButton('Aceptar' , [
-                    'class' => 'btn btn-success',
+                    'class' => 'btn btn-success btn-lg',
                     'onClick' => "$('#votacionciudadana-voto').val(0)"])
                 ?>
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-2">
             <div class="form-group">
                 <?= Html::submitButton('Rechazar' , [
-                    'class' => 'btn btn-success',
+                    'class' => 'btn btn-danger btn-lg',
                     'onClick' => "$('#votacionciudadana-voto').val(1)"])
                 ?>
             </div>
         </div>
-        <div class="col-lg-3"></div>
+        <div class="col-lg-4"></div>
     </div>
     <?php ActiveForm::end(); ?>
 

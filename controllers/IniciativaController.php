@@ -49,11 +49,19 @@ class IniciativaController extends Controller
      */
     public function actionView($id)
     {
-        $votacion_ciudadana = new VotacionCiudadana();
         $model = $this->findModel($id);
-        $votacion_ciudadana->iniciativa_id = $model->id;
+        $dataProvider = new ActiveDataProvider([
+            'query' => VotacionCiudadana::find()->where(['iniciativa_id' => $model->id])->andWhere(['!=','comentario',''])
+        ]);
+        $votacion_ciudadana = new VotacionCiudadana();
+
         if(!Yii::$app->user->isGuest){
-            $votacion_ciudadana->user_id = Yii::$app->user->identity->getId();
+            if ($votacion_ciudadana->usuarioVoto(Yii::$app->user->id, $model->id)){
+                $votacion_ciudadana = VotacionCiudadana::find()->where(['iniciativa_id' => $model->id, 'user_id' => Yii::$app->user->id])->one();
+            } else{
+                $votacion_ciudadana->user_id = Yii::$app->user->identity->getId();
+                $votacion_ciudadana->iniciativa_id = $model->id;
+            }
         }
 
         if ($votacion_ciudadana->load(Yii::$app->request->post()) && $votacion_ciudadana->save()) {
@@ -62,13 +70,9 @@ class IniciativaController extends Controller
             return $this->render('view', [
                 'model' => $model,
                 'vot_ciud' => $votacion_ciudadana,
+                'dataProvider' => $dataProvider,
             ]);
         }
-        /*
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-            'vot_ciud' => $votacion_ciudadana,
-        ]);*/
     }
 
     /**

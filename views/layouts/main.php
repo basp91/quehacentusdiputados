@@ -36,22 +36,30 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+    $menuItems = [
+        ['label' => 'Inicio', 'url' => ['/site/index']],
+        ['label' => 'Acerca', 'url' => ['/site/about']],
+        ['label' => 'Iniciativas', 'url' => ['/iniciativa/index']],
+        ['label' => 'Diputados', 'url' => ['/diputado/index']],
+        ['label' => 'Contacto', 'url' => ['/site/contact']]
+    ];
+
+    if(Yii::$app->user->isGuest)
+    {
+        $menuItems[] = ['label' => 'Crear cuenta','url' => ['/user/create']];
+        $menuItems[] = ['label' => 'Iniciar sesión','url' => ['/site/login']];
+    } else {
+        $menuItems[] = [
+            'label' => 'Cerrar sesión (' . Yii::$app->user->identity->username . ')',
+            'url' => ['/site/logout'],
+            'linkOptions' => ['data-method' => 'post']
+        ];
+    }
+
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Inicio', 'url' => ['/site/index']],
-            ['label' => 'Acerca', 'url' => ['/site/about']],
-            ['label' => 'Iniciativas', 'url' => ['/iniciativa/index']],
-            ['label' => 'Diputados', 'url' => ['/diputado/index']],
-            ['label' => 'Contacto', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ?
-                ['label' => 'Iniciar sesión', 'url' => ['/site/login']] :
-                [
-                    'label' => 'Cerrar sesión (' . Yii::$app->user->identity->username . ')',
-                    'url' => ['/site/logout'],
-                    'linkOptions' => ['data-method' => 'post']
-                ],
-        ],
+        'items' => $menuItems
     ]);
     NavBar::end();
     ?>

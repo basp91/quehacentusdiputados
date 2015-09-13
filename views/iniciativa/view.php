@@ -2,7 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use app\models\VotacionCiudadana;
+use yii\grid\GridView;
+use app\models\User;
+
 
 
 /* @var $this yii\web\View */
@@ -40,27 +42,59 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
 
         <?php if(Yii::$app->user->isGuest): ?>
-            Inicia sesión para votar o ver los resultados!
+
+            <div class="container">
+                    <h4> Inicia sesión para votar o ver los resultados!</h4>
+                </div>
+            </div>
+
         <?php else: ?>
 
             <?php if($vot_ciud->usuarioVoto(Yii::$app->user->id, $model->id)): ?>
 
-            Los resultados son los siguientes
-
+                <div class="container">
+                    <h4>¡Los resultados son los siguientes</h4>
+                </div>
+            </div>
             </div>
             <div class="row">
                 <div class="col-lg-6">
                     <h3>A favor</h3>
-                    <h1><?= $vot_ciud->votacion($model->id)['favor'] ?> %</h1>
+                    <h1><b><?= Yii::$app->formatter->format($vot_ciud->votacion($model->id)['favor'], ['percent', 2]); ?></b></h1>
                 </div>
                 <div class="col-lg-6">
                     <h3>En contra</h3>
-                    <h1><?= $vot_ciud->votacion($model->id)['contra'] ?> % </h1>
+                    <h1><b><?= Yii::$app->formatter->format($vot_ciud->votacion($model->id)['contra'], ['percent', 2]); ?></b></h1>
                 </div>
+            </div>
+            <br>
+            <div class="row">
+
+                <?= GridView::widget([
+                    'dataProvider' => $dataProvider,
+                    'columns' => [
+                        [
+                            'attribute' => 'user_id',
+                            'label' => 'Usuario',
+                            'value' => function($dataProvider){
+                                return User::find('username')->where(['id'=>$dataProvider->user_id])->one()->username;
+                            }
+                        ],
+                        'comentario'
+                    ],
+                ]); ?>
+
+                <?php if(!$vot_ciud->usuarioComento(Yii::$app->user->id, $model->id)): ?>
+                    <?= $this->render('_comenta', [
+                        'modelo_votacion' => $vot_ciud,
+                    ]) ?>
+                <?php endif; ?>
 
             <?php else: ?>
 
-                Vota!
+                    <div class="container">
+                        <h4>¿Tu qué opinas de esta iniciativa?</h4>
+                    </div>
                 </div>
 
                 <?= $this->render('_vota', [

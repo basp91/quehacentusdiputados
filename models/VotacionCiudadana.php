@@ -73,14 +73,20 @@ class VotacionCiudadana extends \yii\db\ActiveRecord
         return $this->find()->where(['user_id' => $id, 'iniciativa_id' => $iniciativa])->exists();
     }
 
+    public function usuarioComento($id, $iniciativa)
+    {
+        return $this->find()->where(['user_id' => $id, 'iniciativa_id' => $iniciativa])
+            ->andWhere(['<>','comentario', 'NULL'])->exists();
+    }
+
     public function votacion($iniciativa)
     {
         $favor = $this->find()->where(['voto' => 0, 'iniciativa_id' => $iniciativa])->count('voto');
         $contra = $this->find()->where(['voto' => 1, 'iniciativa_id' => $iniciativa])->count('voto');
 
         return [
-            'favor' => $favor/($favor+$contra)*100,
-            'contra' => $contra/($favor+$contra)*100,
+            'favor' => $favor/($favor+$contra),
+            'contra' => $contra/($favor+$contra),
         ];
 
     }

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use \app\models\Partido;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\DiputadoSearch */
@@ -23,16 +24,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             'nombre',
             'apellido',
-            'partido_id',
-            'tipo_eleccion',
-            // 'cunul',
-            // 'correo',
-            // 'periodo_inicio',
-            // 'periodo_fin',
-            // 'sexo',
-            // 'edad',
-            // 'distrito_id',
-
+            [
+                'attribute' => 'partido_id',
+                'label' => 'Partido',
+                'value' => function($dataProvider){
+                    return Partido::find()->where(['id'=>$dataProvider->partido_id])->one()->siglas;
+                },
+            ],
+             'periodo_inicio',
+             'periodo_fin',
         ],
     ]); ?>
 

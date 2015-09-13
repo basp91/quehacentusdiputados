@@ -40,9 +40,12 @@ class Diputado extends \yii\db\ActiveRecord
     {
         return [
             [['nombre', 'partido_id', 'tipo_eleccion', 'periodo_inicio', 'periodo_fin'], 'required'],
-            [['partido_id', 'tipo_eleccion', 'periodo_inicio', 'periodo_fin', 'edad', 'distrito_id'], 'integer'],
+            [['partido_id', 'tipo_eleccion', 'distrito_id'], 'integer'],
             [['nombre', 'apellido', 'cunul', 'correo'], 'string', 'max' => 45],
-            [['sexo'], 'string', 'max' => 1]
+            [['sexo'], 'string', 'max' => 1],
+            [['edad'],'integer','max' => 100],
+            [['correo'], 'email'],
+            [['periodo_inicio', 'periodo_fin'],'safe']
         ];
     }
 
@@ -55,15 +58,15 @@ class Diputado extends \yii\db\ActiveRecord
             'id' => 'ID',
             'nombre' => 'Nombre',
             'apellido' => 'Apellido',
-            'partido_id' => 'Partido ID',
-            'tipo_eleccion' => 'Tipo Eleccion',
+            'partido_id' => 'Partido ',
+            'tipo_eleccion' => 'Tipo de elección',
             'cunul' => 'Cunul',
             'correo' => 'Correo',
-            'periodo_inicio' => 'Periodo Inicio',
-            'periodo_fin' => 'Periodo Fin',
+            'periodo_inicio' => 'Periodo de inicio',
+            'periodo_fin' => 'Periodo de término',
             'sexo' => 'Sexo',
             'edad' => 'Edad',
-            'distrito_id' => 'Distrito ID',
+            'distrito_id' => 'Distrito',
         ];
     }
 
@@ -81,5 +84,14 @@ class Diputado extends \yii\db\ActiveRecord
     public function getPartido()
     {
         return $this->hasOne(Partido::className(), ['id' => 'partido_id']);
+    }
+
+    public function tipoEleccion(){
+        $eleccion = [
+            0 => 'Plurinominal',
+            1 => 'Directa'
+        ];
+
+        return $eleccion[$this->tipo_eleccion];
     }
 }

@@ -2,11 +2,13 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\Partido;
+use app\models\Distrito;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Diputado */
 
-$this->title = $model->id;
+$this->title = $model->nombre.' '.$model->apellido;
 $this->params['breadcrumbs'][] = ['label' => 'Diputados', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -28,10 +30,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'nombre',
             'apellido',
+            [
+                'label' => 'Partido',
+                'value' => Partido::find()->where(['id'=>$model->partido_id])->one()->siglas
+            ],
             'partido_id',
+            [
+                'label' => 'Tipo de elección',
+                'value' => $model->tipoEleccion(),
+            ],
             'tipo_eleccion',
             'cunul',
             'correo',
@@ -39,6 +48,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'periodo_fin',
             'sexo',
             'edad',
+            [
+                'label' => 'Distrito',
+                'value' => Distrito::find()->where(['id'=>$model->distrito_id])->one()->nombre
+            ],
             'distrito_id',
         ],
     ]) ?>

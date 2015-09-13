@@ -43,7 +43,7 @@ AppAsset::register($this);
             ['label' => 'Acerca', 'url' => ['/site/about']],
             ['label' => 'Contacto', 'url' => ['/site/contact']],
             ['label' => 'Iniciativas', 'url' => ['/iniciativa/index']],
-            ['label' => 'Diputados', 'url' => ['/diputados/index']],
+            ['label' => 'Diputados', 'url' => ['/diputado/index']],
             Yii::$app->user->isGuest ?
                 ['label' => 'Iniciar sesión', 'url' => ['/site/login']] :
                 [

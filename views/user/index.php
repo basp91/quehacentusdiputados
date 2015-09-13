@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Distrito',
                 'attribute' => 'distrito_id',
                 'value' => function($dataProvider){
-                    return Distrito::find()->where(['id'=>$dataProvider->municipio_id])->one()->nombre;
+                    return Distrito::find()->where(['id'=>$dataProvider->distrito_id])->one()->nombre;
                 },
             ],
 

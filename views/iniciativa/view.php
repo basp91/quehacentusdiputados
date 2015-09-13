@@ -43,21 +43,10 @@ $this->params['breadcrumbs'][] = $this->title;
             Inicia sesión para votar o ver los resultados!
         <?php else: ?>
 
-            <?php if($vot_ciud->usuarioVoto(Yii::$app->user->id)): ?>
+            <?php if($vot_ciud->usuarioVoto(Yii::$app->user->id, $model->id)): ?>
 
             Los resultados son los siguientes
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
 
-                </div>
-                <div class="col-lg-6">
-
-                </div>
-
-            <?php else: ?>
-
-            Vota!
             </div>
             <div class="row">
                 <div class="col-lg-6">
@@ -68,6 +57,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     <h3>En contra</h3>
                     <h1><?= $vot_ciud->votacion($model->id)['contra'] ?> % </h1>
                 </div>
+
+            <?php else: ?>
+
+                Vota!
+                </div>
+
+                <?= $this->render('_vota', [
+                    'modelo_votacion' => $vot_ciud,
+                ]) ?>
+
             <?php endif; ?>
 
 

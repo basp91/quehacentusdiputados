@@ -33,8 +33,8 @@ class Iniciativa extends \yii\db\ActiveRecord
         return [
             [['asunto', 'descripcion'], 'required'],
             [['fecha'], 'safe'],
-            [['descripcion'], 'string'],
-            [['asunto'], 'string', 'max' => 45]
+            [['descripcion'], 'string', 'max' => 1000],
+            [['asunto'], 'string', 'max' => 250]
         ];
     }
 

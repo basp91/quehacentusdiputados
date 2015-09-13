@@ -36,12 +36,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Partido',
                 'value' => Partido::find()->where(['id'=>$model->partido_id])->one()->siglas
             ],
-            'partido_id',
             [
                 'label' => 'Tipo de elección',
                 'value' => $model->tipoEleccion(),
             ],
-            'tipo_eleccion',
             'cunul',
             'correo',
             'periodo_inicio',

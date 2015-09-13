@@ -51,8 +51,12 @@ class IniciativaController extends Controller
     {
         $votacion_ciudadana = new VotacionCiudadana();
         $model = $this->findModel($id);
+        $votacion_ciudadana->iniciativa_id = $model->id;
+        if(!Yii::$app->user->isGuest){
+            $votacion_ciudadana->user_id = Yii::$app->user->identity->getId();
+        }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($votacion_ciudadana->load(Yii::$app->request->post()) && $votacion_ciudadana->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('view', [

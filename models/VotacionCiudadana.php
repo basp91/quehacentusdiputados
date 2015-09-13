@@ -68,9 +68,9 @@ class VotacionCiudadana extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
-    public function usuarioVoto($id)
+    public function usuarioVoto($id, $iniciativa)
     {
-        return $this->find()->where(['user_id' => $id])->exists();
+        return $this->find()->where(['user_id' => $id, 'iniciativa_id' => $iniciativa])->exists();
     }
 
     public function votacion($iniciativa)
@@ -79,8 +79,8 @@ class VotacionCiudadana extends \yii\db\ActiveRecord
         $contra = $this->find()->where(['voto' => 1, 'iniciativa_id' => $iniciativa])->count('voto');
 
         return [
-            'favor' => $favor,
-            'contra' => $contra,
+            'favor' => $favor/($favor+$contra)*100,
+            'contra' => $contra/($favor+$contra)*100,
         ];
 
     }

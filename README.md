@@ -23,12 +23,12 @@ REQUISITOS
 INSTRUCCIONES
 -------------
 
-1 - Clonar el proyecto en un directorio dentro de un servidor con PHP (XAMPP por ejemplo)
-2 - En el directorio del proyecto correr "composer install"
-4 - Crear la base de datos y usuario diputados en la base de datos y asignarle privilegios en la base de datos
-3 - Correr la migración de la base de datos que se encuentra en "/migrations/proyecto.sql".
-4 - Correr el servidor php
-5 - Visitar la aplicación en la dirección : http://localhost/directorio_proyecto/web/
+1. Clonar el proyecto en un directorio dentro de un servidor con PHP (XAMPP por ejemplo)
+2. En el directorio del proyecto correr "composer install"
+3. Crear la base de datos y usuario diputados en la base de datos y asignarle privilegios en la base de datos
+4. Correr la migración de la base de datos que se encuentra en "/migrations/proyecto.sql".
+5. Correr el servidor php
+6. Visitar la aplicación en la dirección : http://localhost/directorio_proyecto/web/
 
 NOTA: La configuración de la base de datos es la siguiente (/config/db.php):
 

@@ -106,4 +106,32 @@ class VotacionCiudadana extends \yii\db\ActiveRecord
             ->where(['votacion_ciudadana.voto' => $vote_val, 'votacion_ciudadana.iniciativa_id' => $iniciativa, 'user.distrito_id' => $model_user->distrito_id])->count();
 
     }
+
+    public function votacionPorDistrito($iniciativa, $distrito)
+    {
+        $favor = $this->voteQueryDistrito(0, $iniciativa, $distrito);
+        $contra = $this->voteQueryDistrito(1, $iniciativa, $distrito);
+
+        if($favor+$contra>0){
+            return [
+                'favor' => $favor/($favor+$contra),
+                'contra' => $contra/($favor+$contra),
+                'total' => $favor+$contra,
+            ];
+        }else{
+            return [
+                'favor' => "",
+                'contra' => "",
+                'total' => "",
+            ];
+        }
+
+    }
+
+    private function voteQueryDistrito($vote_val, $iniciativa, $distrito){
+        $query = new Query();
+        return $query->select('votacion_ciudadana.id')->from('votacion_ciudadana')
+            ->rightJoin('user','user.id = votacion_ciudadana.user_id')
+            ->where(['votacion_ciudadana.voto' => $vote_val, 'votacion_ciudadana.iniciativa_id' => $iniciativa, 'user.distrito_id' => $distrito])->count();
+    }
 }

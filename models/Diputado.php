@@ -94,4 +94,12 @@ class Diputado extends \yii\db\ActiveRecord
 
         return $eleccion[$this->tipo_eleccion];
     }
+
+    public function sexo(){
+        $eleccionSexo = [
+            0 => 'Hombre',
+            1 => 'Mujer'
+        ];
+        return $eleccionSexo[$this->sexo];
+    }
 }

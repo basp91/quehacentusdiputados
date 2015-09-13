@@ -8,6 +8,8 @@ use app\models\DiputadoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
+use app\models\Iniciativa;
 
 /**
  * DiputadoController implements the CRUD actions for Diputado model.
@@ -48,8 +50,13 @@ class DiputadoController extends Controller
      */
     public function actionView($id)
     {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Iniciativa::find()
+        ]);
+       // $dataProvider = new Iniciativa();
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'dataProvider' => $dataProvider,
         ]);
     }
 

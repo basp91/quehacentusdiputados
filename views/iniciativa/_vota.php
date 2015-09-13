@@ -21,7 +21,7 @@ use yii\jui\DatePicker;
         <div class="col-lg-4"></div>
         <div class="col-lg-2">
             <div class="form-group">
-                <?= Html::submitButton('Aceptar' , [
+                <?= Html::submitButton('A favor' , [
                     'class' => 'btn btn-success btn-lg',
                     'onClick' => "$('#votacionciudadana-voto').val(0)"])
                 ?>
@@ -29,7 +29,7 @@ use yii\jui\DatePicker;
         </div>
         <div class="col-lg-2">
             <div class="form-group">
-                <?= Html::submitButton('Rechazar' , [
+                <?= Html::submitButton('En contra' , [
                     'class' => 'btn btn-danger btn-lg',
                     'onClick' => "$('#votacionciudadana-voto').val(1)"])
                 ?>

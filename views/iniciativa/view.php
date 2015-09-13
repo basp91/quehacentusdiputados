@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\grid\GridView;
 use app\models\User;
-
+use app\models\Distrito;
 
 
 /* @var $this yii\web\View */
@@ -16,6 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $user_id = Yii::$app->user->id;
 $model_id = $model->id;
+$distrito = Distrito::find()
+    ->where(['id' => User::find()->where(['id'=>$user_id])->one()->distrito_id])->one()->nombre;
 
 ?>
 <div class="iniciativa-view">
@@ -56,22 +58,24 @@ $model_id = $model->id;
             <?php if($vot_ciud->usuarioVoto($user_id, $model_id)): ?>
 
                 <div class="container">
-                    <h4>¡Los resultados son los siguientes</h4>
+                    <h4>Los resultados de los ciudadanos del distrito <?= $distrito ?> son los siguientes:</h4>
                 </div>
             </div>
             </div>
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-3">
                     <h3>A favor</h3>
                     <h1><b><?= Yii::$app->formatter->format($vot_ciud->votacion($model_id,$user_id)['favor'], ['percent', 2]); ?></b></h1>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-3">
                     <h3>En contra</h3>
                     <h1><b><?= Yii::$app->formatter->format($vot_ciud->votacion($model_id,$user_id)['contra'], ['percent', 2]); ?></b></h1>
                 </div>
+                <div class="col-lg-3"></div>
             </div>
             <div class="row">
-                Votos totales en tu distrito: <?=$vot_ciud->votacion($model_id,$user_id)['total']?>
+                <p class="pull-right"> Votos totales en tu distrito: <?=$vot_ciud->votacion($model_id,$user_id)['total']?></p>
             </div>
             <br>
             <div class="row">

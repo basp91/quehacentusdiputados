@@ -12,7 +12,7 @@ use Yii;
  * @property string $password_hash
  * @property string $auth_key
  * @property string $access_token
- * @property integer $entidad_id
+ * @property integer $distrito_id
  * @property integer $ife
  *
  * @property VotacionCiudadana[] $votacionCiudadanas
@@ -20,6 +20,9 @@ use Yii;
  */
 class User extends \yii\db\ActiveRecord
 {
+
+    public $password;
+
     /**
      * @inheritdoc
      */
@@ -34,8 +37,8 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'password_hash', 'auth_key', 'access_token', 'entidad_id', 'ife'], 'required'],
-            [['entidad_id', 'ife'], 'integer'],
+            [['username', 'password','password_hash', 'auth_key', 'access_token', 'distrito_id', 'ife'], 'required'],
+            [['distrito_id', 'ife'], 'integer'],
             [['username'], 'string', 'max' => 45],
             [['password_hash', 'auth_key', 'access_token'], 'string', 'max' => 128]
         ];
@@ -53,8 +56,8 @@ class User extends \yii\db\ActiveRecord
             'password_hash' => 'Password Hash',
             'auth_key' => 'Auth Key',
             'access_token' => 'Access Token',
-            'entidad_id' => 'Entidad ID',
-            'ife' => 'Ife',
+            'distrito_id' => 'Distrito ID',
+            'ife' => 'INE',
         ];
     }
 

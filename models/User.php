@@ -52,12 +52,13 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'username' => 'Username',
+            'username' => 'Usuario',
             'password_hash' => 'Password Hash',
             'auth_key' => 'Auth Key',
             'access_token' => 'Access Token',
             'distrito_id' => 'Distrito ID',
             'ife' => 'INE',
+            'password' => 'Contraseña'
         ];
     }
 

@@ -62,6 +62,8 @@ class IniciativaController extends Controller
                 $votacion_ciudadana->user_id = Yii::$app->user->identity->getId();
                 $votacion_ciudadana->iniciativa_id = $model->id;
             }
+        } else{
+            return $this->redirect(['site/login']);
         }
 
         if ($votacion_ciudadana->load(Yii::$app->request->post()) && $votacion_ciudadana->save()) {

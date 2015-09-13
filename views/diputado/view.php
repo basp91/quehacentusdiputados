@@ -73,6 +73,7 @@ function getVotacionDistrito($id_iniciativa, $model_distrito){
         ],
     ]) ?>
 
+    <h3>Iniciativas</h3>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
@@ -92,7 +93,7 @@ function getVotacionDistrito($id_iniciativa, $model_distrito){
                 },
             ],
             [
-                'label'=>'Ciudadanos',
+                'label'=>'Voto ciudadano para su distrito',
                 'format'=>'raw',
                 'value'=>function ($dataProvider,$model_distrito) { 
                     $res = getVotacionDistrito($dataProvider->id, $model_distrito);

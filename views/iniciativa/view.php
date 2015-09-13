@@ -14,10 +14,9 @@ $this->title = $model->asunto;
 $this->params['breadcrumbs'][] = ['label' => 'Iniciativas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
-$user_id = Yii::$app->user->id;
 $model_id = $model->id;
-$distrito = Distrito::find()
-    ->where(['id' => User::find()->where(['id'=>$user_id])->one()->distrito_id])->one()->nombre;
+$user_id = Yii::$app->user->id;
+$distrito = Distrito::find()->where(['id' => User::find()->where(['id'=>$user_id])->one()->distrito_id])->one()->nombre;
 
 ?>
 <div class="iniciativa-view">

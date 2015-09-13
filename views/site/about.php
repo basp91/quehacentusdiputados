@@ -24,5 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         las sesiones futuras y pasadas de los diputados para hacerles llegar nuestra opinión en base a encuestas que
         reflejen la opinión ciudadana y hacer un comparativo entre ésta y las votaciones hechas por sus representantes.
     </p>
+    <p><img src="../../web/image.jpg">
+    </p>
 
 </div>

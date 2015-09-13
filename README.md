@@ -1,4 +1,6 @@
-Proyecto: Yo en la cámara de diputados
+PROYECTO:
+=========
+Yo en la cámara de diputados
 ======================================
 
 Se supone que los diputados son electos por distritos para representar nuestros intereses. En época de campañas
@@ -64,8 +66,8 @@ features to your application.
 [![Total Downloads](https://poser.pugx.org/yiisoft/yii2-app-basic/downloads.png)](https://packagist.org/packages/yiisoft/yii2-app-basic)
 [![Build Status](https://travis-ci.org/yiisoft/yii2-app-basic.svg?branch=master)](https://travis-ci.org/yiisoft/yii2-app-basic)
 
-DIRECTORY STRUCTURE
--------------------
+ESTRUCTURA DEL DIRECTORIO
+-------------------------
 
 Estructura por defecto del framework
 

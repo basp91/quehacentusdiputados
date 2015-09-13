@@ -84,9 +84,11 @@ Estructura por defecto del framework
       web/                contains the entry script and Web resources
 
 Estructura del proyecto
+
       config/
         db.php                  contiene la configuración de la base de datos
         web.php                 contiene la configuración del proyecto web
+
       models/
         Diputado.php            contiene el modelo Diputado
         Distrito.php            contiene el modelo Distrito
@@ -100,8 +102,9 @@ Estructura del proyecto
         User.php                contiene al modelo User y exige que identifique su distrito e INE
         LoginForm.php           inicio de sesión
         ContactForm.php         contacto con la administración de la aplicación web
+
       controllers/
         *
-      views/
-        *
 
+      views/                    
+        *

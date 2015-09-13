@@ -2,7 +2,10 @@
 
 namespace app\models;
 
+use app\models\User;
 use Yii;
+use yii\db\Query;
+
 
 /**
  * This is the model class for table "votacion_ciudadana".
@@ -79,15 +82,28 @@ class VotacionCiudadana extends \yii\db\ActiveRecord
             ->andWhere(['<>','comentario', 'NULL'])->exists();
     }
 
-    public function votacion($iniciativa)
+    public function votacion($iniciativa, $user)
     {
-        $favor = $this->find()->where(['voto' => 0, 'iniciativa_id' => $iniciativa])->count('voto');
-        $contra = $this->find()->where(['voto' => 1, 'iniciativa_id' => $iniciativa])->count('voto');
+        //$favor = $this->find()->where(['voto' => 0, 'iniciativa_id' => $iniciativa])->count('voto');
+        //$contra = $this->find()->where(['voto' => 1, 'iniciativa_id' => $iniciativa])->count('voto');
+
+        $favor = $this->voteQuery(0, $iniciativa,$user);
+        $contra = $this->voteQuery(1, $iniciativa,$user);
 
         return [
             'favor' => $favor/($favor+$contra),
             'contra' => $contra/($favor+$contra),
+            'total' => $favor+$contra,
         ];
+
+    }
+
+    private function voteQuery($vote_val, $iniciativa, $user){
+        $model_user = User::find()->where(['id'=> $user])->one();
+        $query = new Query();
+        return $query->select('votacion_ciudadana.id')->from('votacion_ciudadana')
+            ->rightJoin('user','user.id = votacion_ciudadana.user_id')
+            ->where(['votacion_ciudadana.voto' => $vote_val, 'votacion_ciudadana.iniciativa_id' => $iniciativa, 'user.distrito_id' => $model_user->distrito_id])->count();
 
     }
 }

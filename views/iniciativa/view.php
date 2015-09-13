@@ -14,6 +14,9 @@ $this->title = $model->asunto;
 $this->params['breadcrumbs'][] = ['label' => 'Iniciativas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
+$user_id = Yii::$app->user->id;
+$model_id = $model->id;
+
 ?>
 <div class="iniciativa-view">
 
@@ -50,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php else: ?>
 
-            <?php if($vot_ciud->usuarioVoto(Yii::$app->user->id, $model->id)): ?>
+            <?php if($vot_ciud->usuarioVoto($user_id, $model_id)): ?>
 
                 <div class="container">
                     <h4>¡Los resultados son los siguientes</h4>
@@ -60,12 +63,15 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="row">
                 <div class="col-lg-6">
                     <h3>A favor</h3>
-                    <h1><b><?= Yii::$app->formatter->format($vot_ciud->votacion($model->id)['favor'], ['percent', 2]); ?></b></h1>
+                    <h1><b><?= Yii::$app->formatter->format($vot_ciud->votacion($model_id,$user_id)['favor'], ['percent', 2]); ?></b></h1>
                 </div>
                 <div class="col-lg-6">
                     <h3>En contra</h3>
-                    <h1><b><?= Yii::$app->formatter->format($vot_ciud->votacion($model->id)['contra'], ['percent', 2]); ?></b></h1>
+                    <h1><b><?= Yii::$app->formatter->format($vot_ciud->votacion($model_id,$user_id)['contra'], ['percent', 2]); ?></b></h1>
                 </div>
+            </div>
+            <div class="row">
+                Votos totales en tu distrito: <?=$vot_ciud->votacion($model_id,$user_id)['total']?>
             </div>
             <br>
             <div class="row">

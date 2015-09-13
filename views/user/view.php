@@ -29,14 +29,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+
             'username',
-            [
-                'attribute'=>'entidad_id',
-                'value' => function($dataProvider){
-                    return Distrito::find()->where(['id'=>$dataProvider->distrito_id])->one()->nombre;
-                }
-            ],
+            'distrito_id',
             'ife',
         ],
     ]) ?>

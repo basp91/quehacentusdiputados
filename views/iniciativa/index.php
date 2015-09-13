@@ -17,7 +17,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'columns' => [
             'fecha',
-            'asunto',
+            [
+                'attribute'=>'asunto',
+                'format'=>'raw',
+                'value'=>function ($dataProvider) { 
+                    return Html::a($dataProvider->asunto, ["view?id=".$dataProvider->id]);
+                },
+            ],
             'descripcion:ntext',
         ],
     ]); ?>
